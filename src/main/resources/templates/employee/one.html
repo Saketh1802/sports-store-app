@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>employee</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:600px;
+	 bottom:48px;
+}
+
+</style>
+
+
+</head>
+<body style="text-align:center;">
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+	<h1 th:text="'Employee Details : '+ ${emp.name}"></h1>
+	
+		  <a class="btn btn-primary btn-small navbar-btn" th:href="${emp.id} + '/edit'">Edit Employee</a>
+		 <a class="btn btn-primary btn-small navbar-btn" th:href="${emp.id} + '/delete'">Delete Employee</a>
+<br>	
+	<table class="table">
+		<thead class="thead-dark" >
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Name</td>
+				<td th:text="${emp.name}"></td>
+			</tr>
+			<tr>
+				<td>Age</td>
+				<td th:text="${emp.age}"></td>
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td th:text="${emp.gender}"></td>
+			</tr>
+			<tr>
+				<td>Phone</td>
+				<td th:text="${emp.phone}"></td>
+			</tr>
+			<tr>
+				<td>Aadhar</td>
+				<td th:text="${emp.aadhar}"></td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td th:text="${emp.addr}"></td>
+			</tr>
+			<tr>
+				<td>Wage (per month)</td>
+				<td th:text="${emp.wage}"></td>
+			</tr>
+			<tr>
+				<td>Join Date</td>
+				<td th:text="${emp.joinDate}"></td>
+			</tr>
+			<tr>
+				<td>Work Hours</td>
+				<td th:text="${emp.workHours}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+	<br>
+	<h3>Attendance Details</h3>
+	<div class="container">
+		<form method='POST' th:object="${since}" action=''>
+			<div class="form-group">
+				<label th:for="name"> Total days present since : </label>
+				<input th:field="*{name}" type="date"/>
+				<bold th:text="' = ' + ${presentdays}"></bold>
+			</div>
+			
+			<!-- <input type="submit" value="Fetch">
+			 --><button type="submit" class="btn btn-primary"><div class="btn-nav">Fetch </div></button>
+		</form>
+		<br>
+	</div>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;" >ID</th>
+				<th style="text-align:center;">Name</th>
+				<th style="text-align:center;">Date</th>
+				<th style="text-align:center;">Status</th>
+			</tr>
+		</thead>
+		<tbody>
+				<tr th:each="a : ${emp.attendance}">
+					<td th:text="${emp.id}"></td>
+					<td th:text="${emp.name}"></td>
+					<td th:text="${a.date}"></td>
+					<td th:text="${a.status}"></td>
+				</tr>
+		</tbody>
+	</table>
+	<hr>
+</body>
+</html>

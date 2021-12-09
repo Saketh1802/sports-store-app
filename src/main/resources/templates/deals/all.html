@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>all deals</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:1375px;
+	bottom:25px;
+}
+.h1, h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+</style>
+
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+<h1>DEALS</h1>
+	 <a class="btn btn-primary btn-small navbar-btn" href="/deals/add">Make Deal</a>
+	 
+
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>Supplier Name</th>
+				<th>Product Name</th>
+				<th>Quantity</th>
+				<th>Cost</th>
+				<th>Invoice</th>
+				<th>Date</th>
+				<th>More</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="d : ${deals}">
+				<td th:text="${d.id}"></td>
+				<td th:text="${d.supplier.name}"></td>
+				<td th:text="${d.product.name}"></td>
+				<td th:text="${d.quantity}"></td>
+				<td th:text="${d.transaction.amount}"></td>
+				<td th:text="${d.invoice}"></td>
+				<td th:text="${d.transaction.date}"></td>
+				<td>
+					<a th:href="'/deals/' + ${d.id}">click here</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>all customers</title>
+<div th:replace = "fragments :: include"></div>
+
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:1375px;
+	bottom:25px;
+}
+.h1, h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+</style>
+
+</head>
+
+
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+<h1>CUSTOMERS</h1>
+<div th:replace="fragments :: searchbarwithphone"></div>
+	 <a class="btn btn-primary btn-small navbar-btn" href="/customers/add">Add Customer</a>
+	 
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Phone</th>
+				<th>Mail</th>
+				<th>Gender</th>
+				<th>View</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cust : ${customers}">
+				<td th:text="${cust.id}"></td>
+				<td th:text="${cust.name}"></td>
+				<td th:text="${cust.phone}"></td>
+				<td th:text="${cust.mail}"></td>
+				<td th:text="${cust.gender}"></td>
+				<td>
+					<a th:href="${cust.id}">view</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

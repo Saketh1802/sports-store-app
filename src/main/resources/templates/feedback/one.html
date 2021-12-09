@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Feedback</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:600px;
+	 bottom:48px;
+}
+
+</style>
+
+
+</head>
+<body style="text-align:center;">
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+	<h1 th:text="'Feedback Details'"></h1>
+<br>	
+	<table class="table">
+		<thead class="thead-dark" >
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Name</td>
+				<td th:text="${fb.customer.name}"></td>
+			</tr>
+			<tr>
+				<td>Feedback date</td>
+				<td th:text=" ${fb.date}"></td>
+			</tr>
+			<tr>
+				<td>Mail id</td>
+				<td th:text="${fb.customer.mail}"></td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td th:text="${fb.description}"></td>
+			</tr>
+			
+		</tbody>
+	</table>
+</body>
+</html>
+
+<!-- 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>feedback</title>
+<div th:replace = "fragments :: include"></div>
+</head>
+<body style="text-align:center;">
+ --><!-- <nav th:replace="fragments :: navbar"></nav> -->
+	<!-- <h1 th:text="${fb.customer.name}"></h1>
+	<h3 th:text="'feedback given on : ' + ${fb.date}"></h3>
+	<h5 th:text="${fb.customer.mail}"></h5>
+	<br><p><b>Comments</b></p><br>
+	<p th:text="${fb.description}"></p>
+</body>
+</html> -->

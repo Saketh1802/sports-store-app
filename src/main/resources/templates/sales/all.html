@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>all sales</title>
+<div th:replace = "fragments :: include"></div>
+
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:1375px;
+	bottom:25px;
+}
+.h1, h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+</style>
+
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+<h1>Sales</h1>
+	 <a class="btn btn-primary btn-small navbar-btn" href="/sales/add">Make Sale</a>
+
+<br><br>
+
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>Date</th>
+				<th>Product</th>
+				<th>Customer</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Sold by</th>
+				<th>View</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="s : ${sales}">
+				<td th:text="${s.transaction.date}"></td>
+				<td th:text="${s.product.name}"></td>
+				<td th:text="${s.customer.name}"></td>
+				<td th:text="${s.quantity}"></td>
+				<td th:text="${s.price}"></td>
+				<td th:text="${s.emp.name}"></td>
+				<td>
+					<a th:href="${s.id}">view</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

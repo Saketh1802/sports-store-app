@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>expenses</title>
+<div th:replace = "fragments :: include"></div>
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+	<h1> expenses </h1>
+	<div class="container">
+		<form th:object="${trans}" method=POST action=''>
+			<div class="form-group">
+				<label th:for="date">date</label>
+				<input type="date" th:field="*{date}"/>
+				<span th:errors="*{date}"></span>
+			</div>
+			<div class="form-group">
+				<label th:for="amount">amount</label>
+				<input th:field="*{amount}"/>
+				<span th:errors="*{amount}"></span>
+			</div>
+			<div class="form-group">
+				<label th:for="comments">Comments</label>
+				<textarea th:field="*{comments}"></textarea>
+				<span th:errors="*{comments}"></span>
+			</div>
+			<input type="submit"/>
+		</form>
+	</div>
+</body>
+</html>
+
+<h3><a href="delete">CLICK HERE TO DELETE IT</a></h3>

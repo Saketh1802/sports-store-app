@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>warranty</title>
+
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:600px;
+	 bottom:48px;
+}
+
+</style>
+
+
+
+</head>
+<body style="text-align:center;">
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+	<h1 th:text="'Warranty Details'"></h1>
+	
+		  <a class="btn btn-primary btn-small navbar-btn" th:href="${warr.id} + '/edit'">Edit Warranty</a>
+		 <a class="btn btn-primary btn-small navbar-btn" th:href="${warr.id} + '/delete'">Delete Warranty</a>
+<br>	
+
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Num of months</td>
+				<td th:text="${warr.num_of_months}"></td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td th:text="${warr.description}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<h2>All products with this warranty</h2>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">Product name</th>
+				<th style="text-align:center;">More</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p : ${warr.products}">
+				<td th:text="${p.name}"></td>
+				<td> <a th:href="'/products/' + ${p.id}">More details</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<br><br>
+<!-- 	<h4>edit this warranty : <a th:href="${warr.id} + '/edit'">click here</a></h4> -->
+</body>
+</html>

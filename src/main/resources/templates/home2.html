@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+<div th:replace = "fragments :: include">
+</div>
+
+</head>
+<body style="text-align:center;background-image:url(https://wallpapercave.com/wp/wp7758514.jpg) ;background-size: cover;">
+	<span th:replace="fragments :: navbar"></span>
+	<br><br>
+	<h1 style="position:relative; top:15% ;" th:text="'Welcome! '+${name}"></h1>
+	<br><br>
+	<h1 class="display-4" style="color:green;" >TRUPTHI SPORTSTORE</h1>
+	
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>transaction</title>
+<div th:replace = "fragments :: include"></div>
+</head>
+<body style="text-align:center;">
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+<h1>Transaction Details</h1>
+<br>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ID</td>
+				<td th:text="${trans.id}"></td>
+			</tr>
+			<tr>
+				<td>Transaction date</td>
+				<td th:text="${trans.date}"></td>
+			</tr>
+			<tr>
+				<td>Transaction amount</td>
+				<td th:text="${trans.amount}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<table th:unless="not ( ${trans.deals.size()} )" class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+				<th style="text-align:center;">More</th>
+			</tr>
+		</thead>
+		<tbody>
+			<span  th:each="deal : ${trans.deals}">
+				<tr>
+					<td>ID</td>
+					<td th:text="${deal.id}"></td>
+					<td>...</td>
+				</tr>
+				<tr>
+					<td>Supplier name</td>
+					<td th:text="${deal.supplier.name}"></td>
+					<td>
+						<a th:href="'/suppliers/' + ${deal.supplier.id}">more</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Product name</td>
+					<td th:text="${deal.product.name}"></td>
+					<td>
+						<a th:href="'/products/' + ${deal.product.id}">more</a>
+					</td>
+				</tr>
+			</span>
+		</tbody>
+	</table>
+	<br>
+	<span th:unless="not ( ${trans.salaries.size()} )">
+		<h4>Salary paid to employee</h4>
+		<span th:each="sal : ${trans.salaries}">
+			<p  th:text="${sal.emp.name}"></p>
+			<a  th:href="'/employee/' + ${sal.emp.id}">more details of employee</a>
+			
+		</span>
+	</span>
+	<br>
+	<table th:unless="not ( ${trans.sales.size()} )" class="table">
+		<h3 style="text-align:center;">Bill Details</h3>
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+				<th style="text-align:center;">More</th>
+			</tr>
+		</thead>
+		<tbody>
+			<span  th:each="sale : ${trans.sales}">
+				<tr>
+					<td>ID</td>
+					<td th:text="${sale.id}"></td>
+					<td>...</td>
+				</tr>
+				<tr>
+					<td>Customer Name</td>
+					<td th:text="${sale.customer.name}"></td>
+					<td>
+						<a th:href="'/customers/' + ${sale.customer.id}">more</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Product Name</td>
+					<td th:text="${sale.product.name}"></td>
+					<td>
+						<a th:href="'/products/' + ${sale.product.id}">more</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Quantity</td>
+					<td th:text="${sale.quantity}"></td>
+					<td>...</td>
+				</tr>
+				<tr>
+					<td>Warranty and Other details</td>
+					<td>...</td>
+					<td>
+						<a th:href="'/sales/' + ${sale.id}">more</a>
+					</td>
+				</tr>
+			</span>
+		</tbody>
+	</table>
+	<br><br>
+<!-- 	<h4>edit this transaction : <a th:href="${trans.id} + '/edit'">click here</a></h4> -->
+</body>
+</html>

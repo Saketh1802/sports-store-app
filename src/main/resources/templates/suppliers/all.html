@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>all suppliers</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:1375px;
+	bottom:25px;
+}
+.h1, h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+</style>
+
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+	 <br>
+<h1>SUPPLIERS</h1>
+
+<div th:replace="fragments :: searchbarwithphone"></div>
+<a class="btn btn-primary btn-small navbar-btn" href="/suppliers/add">Add Supplier</a>
+	 
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Contact</th>
+				<th>View</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p : ${suppliers}">
+				<td th:text="${p.id}"></td>
+				<td th:text="${p.name}"></td>
+				<td th:text="${p.addr}"></td>
+				<td th:text="${p.contact}"></td>
+				<td>
+					<a th:href="${p.id}">view</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

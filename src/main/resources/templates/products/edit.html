@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>edit product</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+	.btn btn-primary{
+		width:315px;
+	}
+	
+	button.btn.btn-primary{
+		width:315px;	
+	}
+	.h2, h2 {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    bottom: 25px;
+}
+</style>
+
+</head>
+<body>
+
+	<div class="container column" style="width:30%;">
+		
+		<form th:object="${product}" method=POST action='' class="col card p-5 mb-4" >
+	<h2>Edit Product</h2>
+			<div class="form-group">
+				<label th:for="name">Name</label>
+				<input th:field="*{name}"class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label th:for="cost">Cost</label>
+				<input th:field="*{cost}"class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label th:for="brand">Brand Name</label>
+				<select th:field="*{brand}"class="form-control">
+					<option th:each="b : ${brands}" th:text="${b}" th:value="${b.id}"></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label th:for="quantity">Quantity</label>
+				<input th:field="*{quantity}"class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label th:for="warranty">Warranty</label>
+				<select th:field="*{warranty}"class="form-control">
+					<option th:each="b : ${warr}" th:text="${b}" th:value="${b.id}"></option>
+				</select>
+			</div>
+			
+			<input type="submit" value="edit"class="btn btn-primary"/>
+			<br>
+			<h3  class="btn btn-primary" ><a href='/products/'><button type="button"  class="btn btn-primary">Back</button></a></h3>
+		
+		</form>
+		
+	</div>
+<!-- 
+	<div class="container">
+		<form th:object="${product}" method=POST action=''>
+			<div class="form-group">
+				<label th:for="name">Name</label>
+				<input th:field="*{name}"/>
+			</div>
+			<div class="form-group">
+				<label th:for="cost">Cost</label>
+				<input th:field="*{cost}"/>
+			</div>
+			<div class="form-group">
+				<label th:for="brand">Brand Name</label>
+				<select th:field="*{brand}">
+					<option th:each="b : ${brands}" th:text="${b}" th:value="${b.id}"></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label th:for="quantity">Quantity</label>
+				<input th:field="*{quantity}"/>
+			</div>
+			<div class="form-group">
+				<label th:for="warranty">Warranty</label>
+				<select th:field="*{warranty}">
+					<option th:each="b : ${warr}" th:text="${b}" th:value="${b.id}"></option>
+				</select>
+			</div>
+			<input type="submit" value="add"/>
+		</form>
+	</div>
+	<a href="/warranty/add/">Click here to add a warranty</a><br><br>
+	<a href="/brands/add/">Click here to add a brand</a><br><br>
+	<h3><a href="delete">CLICK HERE TO DELETE IT</a></h3> -->
+</body>
+</html>
+

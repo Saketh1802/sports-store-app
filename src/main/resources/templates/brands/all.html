@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>All Brands</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:1375px;
+	bottom:25px;
+}
+.h1, h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+<h1>BRANDS</h1>
+<div th:replace="fragments :: searchbar"></div>
+<a class="btn btn-primary btn-small navbar-btn" href="/brands/add">Add brand</a>
+<br>
+<!-- <div class="btn-nav"><a class="btn btn-primary btn-small navbar-btn" href="#footer">Add Brand</a>
+ </div> 
+ -->
+<!-- <h3 style = "text-align:right;">
+	<a href='#footer'>
+    <button type="button">Add</button>
+    </a>
+    </h3>
+ -->
+<br>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>View</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p : ${brands}">
+				<td th:text="${p.id}"></td>
+				<td th:text="${p.name}"></td>
+				<td>
+					<a th:href="${p.id}">view</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+<!-- 	<h2 style="margin-left:210px;">Add Brand</h2>
+	<hr>
+ -->
+	<!-- <div  id ="footer" class="container">
+		<form class="form-horizontal" th:object="${brand}" method=POST action='/brands/add' >
+			<div class="form-group">
+				<label  th:for="name"><h3 >Name</h3></label>
+				<input th:field="*{name}"  class="form-control"  style="width:30%;margin-left:8px;"/>
+			</div>
+			<input type="submit" value="add"  />
+		</form>
+	</div>
+	 -->
+</body>
+</html>

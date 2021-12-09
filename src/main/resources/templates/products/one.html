@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>product</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:600px;
+	 bottom:48px;
+}
+
+</style>
+
+</head>
+<body style="text-align:center;">
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+	<h1 th:text="'Product Details : '+ ${product.name}"></h1>
+	
+		 <a class="btn btn-primary btn-small navbar-btn" th:href="${product.id} + '/edit'">Edit Product</a>
+		 <a class="btn btn-primary btn-small navbar-btn" th:href="${product.id} + '/delete'">Delete Product</a>
+<br>	
+
+	<br>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ID</td>
+				<td th:text="${product.id}"></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td th:text="${product.name}"></td>
+			</tr>
+			<tr>
+				<td>Brand</td>
+				<td th:text="${product.brand.getName()}"></td>
+			</tr>
+			<tr>
+				<td>Quantity</td>
+				<td th:text="${product.quantity}"></td>
+			</tr>
+			<tr>
+				<td>Price (each unit)</td>
+				<td th:text="${product.cost}"></td>
+			</tr>
+			<tr>
+				<td>Warranty Details</td>
+				<td>
+					<a th:href="'/warranty/' + ${product.warranty.id}">details</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br><br>
+<!-- 	<h4>edit this product : <a th:href="${product.id} + '/edit'">click here</a></h4> -->
+</body>
+</html>

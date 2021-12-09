@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>Add Attendance</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+	.btn btn-primary{
+		width:315px;
+
+	}
+	
+	button.btn.btn-primary{
+		width:315px;	
+	}
+		.h2, h2 {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    bottom: 25px;
+    
+    
+}
+input.btn.btn-primary{
+    position:relative;
+	left:1400px;
+	bottom:542px;
+    }
+</style>
+
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+<h1 style="text-align:center;" >Mark Attendance</h1>
+
+<br>
+	<form th:object="${attendance}" method=POST action='/attendance/add/'>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>EMP ID</th>
+					<th>EMP NAME</th>
+					<th>DATE</th>
+					<th>TICK BOX</th>
+			</thead>
+			<tbody>
+				<tr th:each = "att, stat : *{attendance}">
+					<td th:text="*{attendance[__${stat.index}__].emp.id}"></td>
+					<td th:text="*{attendance[__${stat.index}__].emp.name}"></td>
+					<td th:text="*{attendance[__${stat.index}__].date}"></td>
+					<td><input type="checkbox" th:field="*{attendance[__${stat.index}__].status}"/></td>
+				</tr>
+			</tbody>
+		</table>
+<!-- 		<input type="submit" value="mark"/> -->
+		<input type="submit" class="btn btn-primary" value="mark">
+			<br><br>
+			
+	</form>
+</body>
+</html>

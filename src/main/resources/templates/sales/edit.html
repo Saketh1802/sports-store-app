@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>edit sales transaction</title>
+<div th:replace = "fragments :: include"></div>
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+	<form th:object="${m}" method=POST action=''>
+		<label th:for="date">date</label>
+		<input type="date" th:field="*{transaction.date}"/>
+		<label th:for="amount">amount</label>
+		<input th:field="*{transaction.amount}"/>
+		<label th:for="product">product</label>
+		<select th:field="*{sale.product}">
+			<option th:each=" e : ${products}" th:text="${e}" th:value="${e.id}"></option>
+		</select>
+		<label th:for="customer">customer</label>
+		<select th:field="*{sale.customer}">
+			<option th:each=" e : ${customers}" th:text="${e}" th:value="${e.id}"></option>
+		</select>
+		<label th:for="emp">sold by emp</label>
+		<select th:field="*{sale.emp}">
+			<option th:each=" e : ${employees}" th:text="${e}" th:value="${e.id}"></option>
+		</select>
+		<label th:for="quantity">quantity</label>
+		<input pattern="[0-9]+" th:field="*{sale.quantity}"/>
+		<p>Customer not found? <a href="/customers/add">click here to add</a></p>
+		<input type="submit"/>
+	</form>
+	<h3><a href="delete">CLICK HERE TO DELETE IT</a></h3>
+</body>
+</html>

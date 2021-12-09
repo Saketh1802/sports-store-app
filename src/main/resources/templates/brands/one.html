@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Brand</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:600px;
+	 bottom:48px;
+}
+
+</style>
+
+</head>
+<body style="text-align:center;">
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+	<h1 th:text="'Brand Details : '+ ${brand.name}"></h1>
+	
+		  <a class="btn btn-primary btn-small navbar-btn" th:href="${brand.id} + '/edit'">Edit Brand</a>
+		 <a class="btn btn-primary btn-small navbar-btn" th:href="${brand.id} + '/delete'">Delete Brand</a>
+<br>	
+
+	<table class="table">
+		<thead class="thead-dark">
+		<div class="container">
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+			</tr>
+		</div>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ID</td>
+				<td th:text="${brand.id}"></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td th:text="${brand.name}"></td>
+			</tr>
+		</tbody>
+	</table>
+<!-- 	<h4>edit this brand : <a th:href="${brand.id} + '/edit'">click here</a></h4> -->
+	<h1>List of products under this brand</h1>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">ID</th>
+				<th style="text-align:center;">name</th>
+				<th style="text-align:center;">Cost</th>
+				<th style="text-align:center;">Quantity</th>
+				<th style="text-align:center;">View</th>
+			</tr>
+			
+		</thead>
+		<tbody>
+			<tr th:each="p : ${brand.products}">
+				<td th:text="${p.id}"></td>
+				<td th:text="${p.name}"></td>
+				<td th:text="${p.cost}"></td>
+				<td th:text="${p.quantity}"></td>
+				<td>
+					<a th:href="'/products/' + ${p.id}">view</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

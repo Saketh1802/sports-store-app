@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Attendance</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:1340px;
+	bottom:25px;
+}
+.h1, h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+</style>
+
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+<h1>ATTENDANCE</h1>
+	 <a class="btn btn-primary btn-small navbar-btn" href="/attendance/add">Mark Attendance</a>
+<br><br>
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th class="column1" scope="col">ID</th>
+								<th class="column2" scope="col">Name</th>
+								<th class="column3" scope="col">Date</th>
+								<th class="column4" scope="col">Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<span th:each="e : ${emp}">
+								<tr th:each="a : ${e.attendance}">
+									<td th:text="${e.id}" class="column1" scope="row"></td>
+									<td th:text="${e.name}" class="column2" scope="row"></td>
+									<td th:text="${a.date}" class="column3" scope="row"></td>
+									<td th:text="${a.status}" class="column4" scope="row"></td>
+								</tr>
+							</span>
+						</tbody>
+					</table>
+</body>
+</html>

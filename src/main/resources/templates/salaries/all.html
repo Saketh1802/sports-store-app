@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>all salaries</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:1375px;
+	bottom:7px;
+}
+.h1, h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+</style>
+
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+	 <h1>Salary Transactions</h1>
+
+	 <a class="btn btn-primary btn-small navbar-btn" href="/salaries/add">Pay Salary</a>
+<!-- 	 <div class="btn-nav"><a class="btn btn-primary btn-small navbar-btn" href="/salaries/add">Pay Salary</a> -->
+ </div>
+<br><br>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Date</th>
+				<th>Amount</th>
+				<th>Comment</th>
+				<th>More emp details</th>
+				<th>Transaction details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="s : ${salaries}">
+				<td th:text="${s.emp.id}"></td>
+				<td th:text="${s.emp.name}"></td>
+				<td th:text="${s.transaction.date}"></td>
+				<td th:text="${s.transaction.amount}"></td>
+				<td th:text="${s.transaction.comments}"></td>
+				<td>
+					<a th:href="'/employee/' + ${s.emp.id}">click for employee details</a>
+				</td>
+				<td>
+					<a th:href="'/salaries/' + ${s.id}">click for transaction details</a>
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>

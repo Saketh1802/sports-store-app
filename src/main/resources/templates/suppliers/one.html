@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>suppliers</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:600px;
+	 bottom:48px;
+}
+
+</style>
+
+</head>
+<body style="text-align:center;">
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+<h1 th:text="'Supplier Details : '+ ${supplier.name}"></h1>	
+		  <a class="btn btn-primary btn-small navbar-btn" th:href="${supplier.id} + '/edit'">Edit Supplier</a>
+		 <a class="btn btn-primary btn-small navbar-btn" th:href="${supplier.id} + '/delete'">Delete Supplier</a>
+<br>
+<!-- 	<h1 th:text="${supplier.name}"></h1> -->
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ID</td>
+				<td th:text="${supplier.id}"></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td th:text="${supplier.name}"></td>
+			</tr>
+			<tr>
+				<td>Contact</td>
+				<td th:text="${supplier.contact}"></td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td th:text="${supplier.addr}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<h3>All Deals</h3>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">Product Name</th>
+				<th style="text-align:center;">Quantity</th>
+				<th style="text-align:center;">Price</th>
+				<th style="text-align:center;">Amount</th>
+				<th style="text-align:center;">Invoice</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="d : ${deals}">
+				<td th:text="${d.getProduct().getName()}"></td>
+				<td th:text="${d.getQuantity()}"></td>
+				<td th:text="${d.transaction.date}"></td>
+				<td th:text="${d.transaction.getAmount()}"></td>
+				<td th:text="${d.getInvoice()}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br><br>
+<!-- 	<h4>edit supplier info : <a th:href="${supplier.id} + '/edit'">click here</a></h4> -->
+</body>
+</html>

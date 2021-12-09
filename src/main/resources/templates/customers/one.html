@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>customer</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:600px;
+	 bottom:48px;
+}
+
+</style>
+
+</head>
+<body style="text-align:center;">
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+	<h1 th:text="'Customer Details : '+ ${cust.name}"></h1>
+	
+		  <a class="btn btn-primary btn-small navbar-btn" th:href="${cust.id} + '/edit'">Edit Customer</a>
+		 <a class="btn btn-primary btn-small navbar-btn" th:href="${cust.id} + '/delete'">Delete Customer</a>
+<br>	
+
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">Field</th>
+				<th style="text-align:center;">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Name</td>
+				<td th:text="${cust.name}"></td>
+			</tr>
+			<tr>
+				<td>Phone</td>
+				<td th:text="${cust.phone}"></td>
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td th:text="${cust.gender}"></td>
+			</tr>
+			<tr>
+				<td>Mail id</td>
+				<td th:text="${cust.mail}"></td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td th:text="${cust.addr}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br><br><!-- 
+	<h4>edit customer details : <a th:href="${cust.id} + '/edit'">click here</a></h4> -->
+</body>
+</html>

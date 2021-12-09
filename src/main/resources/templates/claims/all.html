@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>all claims</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:1375px;
+	bottom:25px;
+}
+.h1, h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+</style>
+
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<br>
+<h1>Warranties Claimed</h1>
+<br>
+	<table class="table">
+	<thead class="thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>Product name</th>
+				<th>Customer name</th>
+				<th>Claim date</th>
+				<th>Sales details</th>
+				<th>Edit claim details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="c : ${claims}">
+				<td th:text="${c.id}"></td>
+				<td>
+					<a th:href="'/products/' + ${c.product.id}" th:text="${c.product.name}"></a>
+				</td>
+				<td>
+					<a th:href="'/customers/' + ${c.customer.id}" th:text="${c.customer.name}"></a>
+				</td>
+				<td th:text="${c.claim_date}"></td>
+				<td>
+					<a th:href="'/sales/' + ${c.sale.id}">Details</a>
+				</td>
+				<td>
+					<a th:href="${c.id} + '/edit'">Edit</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

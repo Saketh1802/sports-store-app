@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>add sale</title>
+<meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+<style>
+	.btn btn-primary{
+		width:335px;
+			
+	}	
+	button.btn.btn-primary{
+		width:315px;
+			
+	}
+	.h2, h2 {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    bottom: 25px;
+}
+</style>
+
+
+</head>
+<body>
+<br><br>
+
+
+	<div class="container column" style="width:30%;">
+	<form th:object="${m}" method=POST action='/sales/add' class="col card p-5 mb-4">
+<h2>Make Sale</h2>
+			<div class="form-group">
+				<label th:for="date">date</label>
+				<input type="date" th:field="*{transaction.date}"class="form-control"/><br>
+			</div>
+				<span th:each="s, ind : *{sale}">
+					<div class="form-group">
+						<label th:for="product">product</label>
+						<select th:field="*{sale[__${ind.index}__].product}"class="form-control">
+							<option th:each=" e : ${products}" th:text="${e}" th:value="${e.id}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label th:for="customer">customer</label>
+						<select th:field="*{sale[__${ind.index}__].customer}"class="form-control">
+							<option th:each=" e : ${customers}" th:text="${e}" th:value="${e.id}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label th:for="emp">sold by emp</label>
+						<select th:field="*{sale[__${ind.index}__].emp}"class="form-control">
+							<option th:each=" e : ${employees}" th:text="${e}" th:value="${e.id}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label th:for="quantity">quantity</label>
+						<input pattern="[0-9]+" th:field="*{sale[__${ind.index}__].quantity}"class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label th:for="price">price of each unit</label>
+						<input th:field="*{sale[__${ind.index}__].price}"class="form-control"/>
+					</div>
+						<br>
+				</span>
+				<hr>
+				<p>Customer not found? <a href="/customers/add">click here to add</a></p>
+			<input style="width:40%;"type="submit" name="addmore" value="ADD MORE" class="btn btn-primary"/>
+			<input style="width:40%;position:relative;left:60%;" type="submit" name="final" value="FINISH" class="btn btn-primary"/>
+			
+			<br>
+			<h3  class="btn btn-primary" ><a href='/sales/'><button type="button"  class="btn btn-primary">Back</button></a></h3>
+		
+		</form>
+	
+	
+	<!-- 
+		<form th:object="${m}" method=POST action='/salaries/add' class="col card p-5 mb-4">
+			<div class="form-group">
+				<label th:for="date">date</label>
+				<input type="date" th:field="*{transaction.date}" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label th:for="amount">amount</label>
+				<input th:field="*{transaction.amount}" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label th:for="emp">emp</label>
+				<select th:field="*{salary.emp}" class="form-control">
+					<option th:each=" e : ${employees}" th:text="${e}" th:value="${e.id}"></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label th:for="comments">remarks</label>
+				<input th:field="*{transaction.comments}" class="form-control"/>
+			</div>
+			<input type="submit" class="btn btn-primary" >
+			<br>
+			<h3  class="btn btn-primary" ><a href='/salaries/'><button type="button"  class="btn btn-primary">Back</button></a></h3>
+		</form>
+ -->	
+	</div>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>add sales</title>
+<div th:replace = "fragments :: include"></div>
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+	<div class="container">
+		<form th:object="${m}" method=POST action='/sales/add'>
+			<div class="form-group">
+				<label th:for="date">date</label>
+				<input type="date" th:field="*{transaction.date}"/><br>
+			</div>
+				<span th:each="s, ind : *{sale}">
+					<div class="form-group">
+						<label th:for="product">product</label>
+						<select th:field="*{sale[__${ind.index}__].product}">
+							<option th:each=" e : ${products}" th:text="${e}" th:value="${e.id}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label th:for="customer">customer</label>
+						<select th:field="*{sale[__${ind.index}__].customer}">
+							<option th:each=" e : ${customers}" th:text="${e}" th:value="${e.id}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label th:for="emp">sold by emp</label>
+						<select th:field="*{sale[__${ind.index}__].emp}">
+							<option th:each=" e : ${employees}" th:text="${e}" th:value="${e.id}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label th:for="quantity">quantity</label>
+						<input pattern="[0-9]+" th:field="*{sale[__${ind.index}__].quantity}"/>
+					</div>
+					<div class="form-group">
+						<label th:for="price">price of each unit</label>
+						<input th:field="*{sale[__${ind.index}__].price}"/>
+					</div>
+						<br>
+				</span>
+
+				<p>Customer not found? <a href="/customers/add">click here to add</a></p>
+			<input type="submit" name="addmore" value="ADD MORE"/>
+			<input type="submit" name="final" value="FINISH"/>
+			
+		</form>
+	</div>
+</body>
+</html> -->

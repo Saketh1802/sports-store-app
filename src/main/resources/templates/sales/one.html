@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>sales</title>
+<div th:replace = "fragments :: include"></div>
+<style>
+a.btn.btn-primary.btn-small.navbar-btn{
+	position:relative;
+	left:600px;
+	 bottom:48px;
+}
+
+</style>
+
+</head>
+<body style="text-align:center;">
+<nav th:replace="fragments :: navbar"></nav>
+	<br>
+	<h1 th:text="'Sale Details'"></h1>
+<br>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th style="text-align:center;">field</th>
+				<th style="text-align:center;">value</th>
+				<th style="text-align:center;">more details at</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ID</td>
+				<td th:text="${sale.id}"></td>
+				<td>
+					...
+				</td>
+			</tr>
+			<tr>
+				<td>date</td>
+				<td th:text="${sale.transaction.date}"></td>
+				<td>
+					<a th:href="'/transactions/' + ${sale.transaction.id}">transaction details</a>
+				</td>
+			</tr>
+			<tr>
+				<td>amount</td>
+				<td th:text="${sale.price}"></td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td>product name</td>
+				<td th:text="${sale.product.name}"></td>
+				<td>
+					<a th:href="'/products/' + ${sale.product.id}">product details</a>
+				</td>
+			</tr>
+			<tr>
+				<td>customer name</td>
+				<td th:text="${sale.customer.name}"></td>
+				<td>
+					<a th:href="'/customers/' + ${sale.customer.id}">customer details</a>
+				</td>
+			</tr>
+			<tr>
+				<td>quantity</td>
+				<td th:text="${sale.quantity}"></td>
+				<td> ... </td>
+			</tr>
+			<tr>
+				<td>sold by</td>
+				<td th:text="${sale.emp.name}"></td>
+				<td>
+					<a th:href="'/employee/' + ${sale.emp.id}">employee details</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br><br>
+	<h4>Warranty Claim Status </h4>
+	<span th:unless="${claim}">
+		<p>Expires on :</p>
+		<p th:text="${expiry}"></p>
+		<span th:unless="(${canClaim})">
+			<p>Cannot claim warranty</p>
+		</span>
+		<span th:unless="not (${canClaim})">
+			<a th:href="${sale.id} + '/claim/'">click here to claim</a>
+		</span>
+	</span>
+	<span th:unless="not ( ${claim} )">
+		<p>Warranty Claimed on :</p>
+		<p th:text="${claim.claim_date}"></p>
+		<p><b>remarks</b></p>
+		<p th:text="${claim.remarks}"></p>	
+	</span>
+</body>
+</html>
